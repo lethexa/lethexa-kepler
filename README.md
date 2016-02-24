@@ -17,6 +17,8 @@ Usage
 	var julianDate = new kepler.JulianDate(1,1,2015,12,0,0);
 	console.log('Startime: ' + julianDate.getStarTime());
 
+        var orbiter = new kepler.Orbiter();
+	console.log(orbiter.getPositionAtTime(1.0));
 
 License
 -------

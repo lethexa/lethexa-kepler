@@ -149,8 +149,8 @@
       var RadO = radians(lonAscNode);
       var RadI = radians(inclination);
 
-      var X = R * (Math.cos(RadO) * Math.cos(RadV + RadP - RadO) - Math.sin(RadO) * sin(RadV + RadP - RadO) * Math.cos(RadI));
-      var Y = R * (Math.sin(RadO) * Math.cos(RadV + RadP - RadO) + Math.cos(RadO) * sin(RadV + RadP - RadO) * Math.cos(RadI));
+      var X = R * (Math.cos(RadO) * Math.cos(RadV + RadP - RadO) - Math.sin(RadO) * Math.sin(RadV + RadP - RadO) * Math.cos(RadI));
+      var Y = R * (Math.sin(RadO) * Math.cos(RadV + RadP - RadO) + Math.cos(RadO) * Math.sin(RadV + RadP - RadO) * Math.cos(RadI));
       var Z = R * (Math.sin(RadV + RadP - RadO) * Math.sin(RadI));
       return [X,Y,Z];
     };

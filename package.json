@@ -1,0 +1,32 @@
+{
+  "name": "lethexa-kepler",
+  "version": "0.0.1",
+  "description": "Library for calculating astronomical orbits",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lethexa/lethexa-kepler"
+  },
+  "keywords": [
+    "Physics",
+    "Astronomy"
+  ],
+  "author": "Tim Leerhoff <tleerhof@web.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.13.4",
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "~0.11.2",
+    "grunt-contrib-uglify": "~0.9.1",
+    "grunt-contrib-yuidoc": "~0.7.0",
+    "grunt-env": "^0.4.4",
+    "grunt-istanbul": "^0.6.1",
+    "grunt-mocha-cli": "~1.13.0",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.2.5"
+  }
+}

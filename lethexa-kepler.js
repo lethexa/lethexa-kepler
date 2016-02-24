@@ -2,7 +2,18 @@
   'use strict';
 
   var ASTRONOMICAL_UNIT = 149597870691.0; // [m]
-  
+
+  var arc000_360 = function(arc) {
+    while(arc >= 360) arc -= 360;
+    while(arc < 0) arc += 360;
+    return arc;
+  };
+
+  var radians = function(w) {
+    return w * Math.PI / 180.0;
+  };
+ 
+ 
   /**
    * Creates the julian date of the given time
    * @class JulianDate
@@ -89,11 +100,6 @@
       return StarTime + (correct === undefined ? 0 : correct);
     };
 
-    var arc000_360 = function(arc) {
-      while(arc >= 360) arc -= 360;
-      while(arc < 0) arc += 360;
-      return arc;
-    };
 
     /**
      * Returns the julian day.
@@ -107,6 +113,49 @@
     var julianDay = calcJulianDay(day, month, year);
     julianDay += hour / 24.0 + minute / (24.0 * 60.0) + second / (24.0 * 3600.0);
   };
+
+
+  /**
+   * The orbiting object.
+   */
+  exports.Orbiter = function(options) {
+    options = options || {};
+    var dailyMotion = options.dailyMotion || 1.0;
+    var meanLongitude = options.meanLongitude || 262.4278;
+    var lonPerihelion = options.lonPerihelion || 336.0882;
+    var eccentricity = options.eccentricity || 0.0934231;
+    var semiMajor = options.semiMajor || 1.5236365;
+    var lonAscNode = options.lonAscNode || 49.5664;
+    var inclination = options.inclination || 1.84992;
+    var arcToEcliptic = options.arcToEcliptic || 23.45;
+
+    this.getPositionAtTime = function(daysSinceEpoch) {
+      var M = dailyMotion * daysSinceEpoch + meanLongitude - lonPerihelion;
+      M = arc000_360(M);
+ 
+      // E annaehern...
+      var RadV;
+      var RadM = radians(M);
+      var V = M + (180.0 / Math.PI) * eccentricity * Math.sin(RadM) * (1.0 + eccentricity * Math.cos(RadM));
+      for(var i=0;i<1;i++) {
+        RadV = radians(V);
+        V = V - (V - (180.0 / Math.PI) * eccentricity * Math.sin(RadV) - M) / (1.0 - eccentricity * Math.cos(RadV));
+      }
+      V = arc000_360(V);
+ 
+      RadV = radians(V);
+      var R = 1000 * semiMajor * (1.0 - eccentricity * eccentricity) / (1.0 + eccentricity * Math.cos(RadV));
+      var RadP = radians(lonPerihelion);
+      var RadO = radians(lonAscNode);
+      var RadI = radians(inclination);
+
+      var X = R * (Math.cos(RadO) * Math.cos(RadV + RadP - RadO) - Math.sin(RadO) * sin(RadV + RadP - RadO) * Math.cos(RadI));
+      var Y = R * (Math.sin(RadO) * Math.cos(RadV + RadP - RadO) + Math.cos(RadO) * sin(RadV + RadP - RadO) * Math.cos(RadI));
+      var Z = R * (Math.sin(RadV + RadP - RadO) * Math.sin(RadI));
+      return [X,Y,Z];
+    };
+  };
+
 
   exports.EquinoxTime = new exports.JulianDate(20, 3, 2010, 17, 32, 0);
 

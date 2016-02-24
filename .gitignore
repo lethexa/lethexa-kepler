@@ -5,4 +5,5 @@
 /target/
 /coverage/
 results.txt
+npn-debug.log
 *.swp

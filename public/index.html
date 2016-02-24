@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kepler example</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+	</canvas> 
+	<script src="lethexa-kepler.js"></script>
+	<script>
+
+        var julianDate = new kepler.JulianDate(1,1,2015,12,0,0);
+        console.log('Startime: ' + julianDate.getStarTime());
+
+	</script>
+</body>
+</html>

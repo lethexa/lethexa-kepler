@@ -1,0 +1,26 @@
+{
+  "name": "lethexa-kepler",
+  "version": "0.0.1",
+  "authors": [
+    "Tim Leerhoff <tleerhof@web.de>"
+  ],
+  "description": "Library for calculating astronomical orbits",
+  "main": "public/index.html",
+  "moduleType": [
+    "amd",
+    "es6"
+  ],
+  "license": "GPL-3.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/components",
+    "Gruntfile.js",
+    "jenkins-grunt.sh",
+    "publishTag.sh",
+    "lib",
+    "test"
+  ],
+  "dependencies": {
+  }
+}

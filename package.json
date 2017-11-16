@@ -1,7 +1,7 @@
 {
   "name": "lethexa-kepler",
   "version": "0.0.1",
-  "description": "Library for calculating astronomical orbits",
+  "description": "Library for calculating astronomical orbits", 
   "main": "index.js",
   "scripts": {
     "start": "node example.js",
